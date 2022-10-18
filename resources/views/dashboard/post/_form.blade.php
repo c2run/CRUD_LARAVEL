@@ -30,4 +30,10 @@
     {{old("description", $post->description)}}
 </textarea>
 <br>
+@if(isset($task) && $task == 'edit')
+
+<label for="">Imagen</label>
+<input type="file" name="image">
+@endif
+<br>
 <button type="submit">Enviar</button>

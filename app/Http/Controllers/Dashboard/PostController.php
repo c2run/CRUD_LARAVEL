@@ -106,8 +106,18 @@ class PostController extends Controller
      */
     public function update(PutRequest $request, Post $post)
     {
+        $data = $request->validated();
+        if(isset($data["image"])){
+            
+            //dd($request->image->name);
+            //dd($request->validated()["image"]);
+            $data["image"] = $filename = time().".".$data["image"]->extension();
+
+            //el archivo de imagen se mueve a la ubicación.
+            $request->image->move(public_path("image"), $filename);
+        }
         //dd($request->validated());
-        $post->update($request->validated());
+        $post->update($data);
         $request->session()->flash('status',"Registro actualizado");
         return to_route("post.index");
     }
