@@ -118,6 +118,8 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        echo "Página destroy";
+        //echo "Página destroy";
+        $post->delete();
+        return to_route("post.index");
     }
 }
