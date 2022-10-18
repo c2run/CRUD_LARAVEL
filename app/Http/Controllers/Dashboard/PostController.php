@@ -81,7 +81,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-       echo "Página show";
+       //echo "Página show";
+       return view("dashboard.post.show", compact('post'));
     }
 
     /**
