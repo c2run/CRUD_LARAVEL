@@ -10,16 +10,7 @@ class PutRequest extends FormRequest
    
      static public function myRules()
     {
-        return [
-            //Aquí van las reglas de validación de datos para sanear los datos
-            //que vienen de los formularios a la BD
-            "title" => "required|min:5|max:500",
-            //"slug" => "required|min:5|max:500",
-            "content" => "required|min:5",
-            "category_id" => "required|integer",
-            "description" => "required|min:5",
-            "posted" => "required"
-        ];
+        
     }
     /**
      * Determine if the user is authorized to make this request.
@@ -38,6 +29,16 @@ class PutRequest extends FormRequest
      */
     public function rules()
     {
-        return $this->myRules();
+       
+        return [
+            //Aquí van las reglas de validación de datos para sanear los datos
+            //que vienen de los formularios a la BD
+            "title" => "required|min:5|max:500",
+            "slug" => "required|min:5|max:500|unique:posts,slug,".$this->route("post")->id,
+            "content" => "required|min:5",
+            "category_id" => "required|integer",
+            "description" => "required|min:5",
+            "posted" => "required"
+        ];
     }
 }
