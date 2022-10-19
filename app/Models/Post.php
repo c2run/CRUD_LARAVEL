@@ -9,4 +9,9 @@ class Post extends Model
 {
     use HasFactory;
    protected $fillable = ['title','slug','content','category_id','description','posted','image'];
+
+   public function category(){
+    //Relacionar campos
+    return $this->belongsTo(Category::class);
+   }
 }
